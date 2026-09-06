@@ -1,5 +1,5 @@
 
-# Verilog UART Project
+# UART Transreceiver (Verilog HDL)
 
 ## Overview
 A simple implementation of the **UART (Universal Asynchronous Receiver-Transmitter)** protocol written in **Verilog HDL**. 
