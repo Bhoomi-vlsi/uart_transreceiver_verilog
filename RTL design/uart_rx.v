@@ -1,4 +1,4 @@
-odule uart_receiver(
+module uart_receiver(
     input clk,
     input rst,
     input rx,
