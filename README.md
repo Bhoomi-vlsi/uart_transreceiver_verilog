@@ -1,6 +1,7 @@
 
 # Verilog UART Project
 
+## Overview
 A simple implementation of the **UART (Universal Asynchronous Receiver-Transmitter)** protocol written in **Verilog HDL**. 
 
 This project contains independent Transmitter (TX) and Receiver (RX) modules connected together in a top-level wrapper for easy testing.
