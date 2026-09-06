@@ -1,7 +1,7 @@
 
-# Verilog UART Project (TX & RX Modules)
+# Verilog UART Project
 
-A simple and clean implementation of the **UART (Universal Asynchronous Receiver-Transmitter)** protocol written in **Verilog HDL**. 
+A simple implementation of the **UART (Universal Asynchronous Receiver-Transmitter)** protocol written in **Verilog HDL**. 
 
 This project contains independent Transmitter (TX) and Receiver (RX) modules connected together in a top-level wrapper for easy testing.
 
@@ -59,4 +59,26 @@ The system communicates asynchronously using a standard **8-N-1** frame structur
 *   **`START`**: Implements the starting frame. The transmitter drives the line low, while the receiver confirms the validity of the incoming low start bit.
 *   **`DATA`**: Processes the 8-bit payload. A bit-counter tracks progress while internal shift registers sequentially transmit or collect data bits at the calculated baud rate interval.
 *   **`STOP`**: Finalizes the data frame. The transmitter drives the line high to close the packet, and the receiver checks for a valid high stop bit before outputting the recovered byte.
+
+
+
+## Concepts Learned
+
+* **Asynchronous Communication:** Learned how two independent hardware systems communicate reliably over a single wire without sharing a common clock signal.
+* **Baud Rate Generation & Clock Division:** Understood how to scale down a high-frequency system clock into a precise, lower-frequency pulse to establish timing synchronization for data transfer.
+* **Finite State Machines (FSM):** Mastered designing multi-state hardware controllers (`IDLE` -> `START` -> `DATA` -> `STOP`) to handle sequence-dependent logic natively in hardware.
+* **Parallel-to-Serial & Serial-to-Parallel Conversion:** Implemented shift registers to pack a full byte into sequential bits on transmission, and reassemble incoming bitstreams back into bytes on reception.
+* **Data Sampling Techniques:** Discovered how the receiver utilizes mid-bit sampling (checking the line at 50% of the bit window duration) to safely read data away from edge noise and signal distortion.
+
+---
+
+## Future Improvements
+
+To build upon this foundation, potential future upgrades for this architecture include:
+
+* **Configurable Baud Rates:** Parameterizing the clock divider module to dynamically switch between standard baud rates (e.g., 9600, 115200) via external control switches without needing to re-synthesize the code.
+* **Parity Bit Support:** Extending the frame configuration to support optional Even or Odd Parity bits to implement basic error checking natively on the data packet frame.
+* **Hardware Interfacing:** Porting the constraints file to physically test the loopback routing on an FPGA board (such as a Basys 3 or Nexus 4) and communicating with a computer terminal over a USB-UART bridge.
+
+---
 
